@@ -35,20 +35,18 @@
             button1 = new Button();
             label4 = new Label();
             label3 = new Label();
-            cbClasificacion = new ComboBox();
+            cbClasificacionPelicula = new ComboBox();
             label2 = new Label();
             txtNombrePelicula = new TextBox();
             label1 = new Label();
             Sesion = new TabPage();
+            button2 = new Button();
+            cbNombrePelicula = new ComboBox();
+            label8 = new Label();
             label6 = new Label();
             dtFechaInicio = new DateTimePicker();
             cbSala = new ComboBox();
             label5 = new Label();
-            comboBox1 = new ComboBox();
-            label7 = new Label();
-            comboBox2 = new ComboBox();
-            label8 = new Label();
-            button2 = new Button();
             OpcionesCreacion.SuspendLayout();
             Pelicula.SuspendLayout();
             Sesion.SuspendLayout();
@@ -71,7 +69,7 @@
             Pelicula.Controls.Add(button1);
             Pelicula.Controls.Add(label4);
             Pelicula.Controls.Add(label3);
-            Pelicula.Controls.Add(cbClasificacion);
+            Pelicula.Controls.Add(cbClasificacionPelicula);
             Pelicula.Controls.Add(label2);
             Pelicula.Controls.Add(txtNombrePelicula);
             Pelicula.Controls.Add(label1);
@@ -110,6 +108,7 @@
             button1.TabIndex = 8;
             button1.Text = "Crear";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label4
             // 
@@ -129,13 +128,13 @@
             label3.TabIndex = 4;
             label3.Text = "Duracion";
             // 
-            // cbClasificacion
+            // cbClasificacionPelicula
             // 
-            cbClasificacion.FormattingEnabled = true;
-            cbClasificacion.Location = new Point(104, 65);
-            cbClasificacion.Name = "cbClasificacion";
-            cbClasificacion.Size = new Size(151, 28);
-            cbClasificacion.TabIndex = 3;
+            cbClasificacionPelicula.FormattingEnabled = true;
+            cbClasificacionPelicula.Location = new Point(104, 65);
+            cbClasificacionPelicula.Name = "cbClasificacionPelicula";
+            cbClasificacionPelicula.Size = new Size(151, 28);
+            cbClasificacionPelicula.TabIndex = 3;
             // 
             // label2
             // 
@@ -166,10 +165,8 @@
             // Sesion
             // 
             Sesion.Controls.Add(button2);
-            Sesion.Controls.Add(comboBox2);
+            Sesion.Controls.Add(cbNombrePelicula);
             Sesion.Controls.Add(label8);
-            Sesion.Controls.Add(comboBox1);
-            Sesion.Controls.Add(label7);
             Sesion.Controls.Add(label6);
             Sesion.Controls.Add(dtFechaInicio);
             Sesion.Controls.Add(cbSala);
@@ -181,6 +178,32 @@
             Sesion.TabIndex = 1;
             Sesion.Text = "Sesion";
             Sesion.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(118, 358);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 8;
+            button2.Text = "Crear";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // cbNombrePelicula
+            // 
+            cbNombrePelicula.FormattingEnabled = true;
+            cbNombrePelicula.Location = new Point(71, 103);
+            cbNombrePelicula.Name = "cbNombrePelicula";
+            cbNombrePelicula.Size = new Size(151, 28);
+            cbNombrePelicula.TabIndex = 7;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 106);
+            label8.Name = "label8";
+            label8.Size = new Size(59, 20);
+            label8.TabIndex = 6;
+            label8.Text = "Pelicula";
             // 
             // label6
             // 
@@ -204,7 +227,7 @@
             // cbSala
             // 
             cbSala.FormattingEnabled = true;
-            cbSala.Location = new Point(49, 112);
+            cbSala.Location = new Point(49, 57);
             cbSala.Name = "cbSala";
             cbSala.Size = new Size(173, 28);
             cbSala.TabIndex = 1;
@@ -212,54 +235,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 115);
+            label5.Location = new Point(6, 60);
             label5.Name = "label5";
             label5.Size = new Size(37, 20);
             label5.TabIndex = 0;
             label5.Text = "Sala";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(63, 66);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(159, 28);
-            comboBox1.TabIndex = 5;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(3, 69);
-            label7.Name = "label7";
-            label7.Size = new Size(54, 20);
-            label7.TabIndex = 4;
-            label7.Text = "Estado";
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(71, 158);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 28);
-            comboBox2.TabIndex = 7;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(6, 161);
-            label8.Name = "label8";
-            label8.Size = new Size(59, 20);
-            label8.TabIndex = 6;
-            label8.Text = "Pelicula";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(118, 358);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 8;
-            button2.Text = "Crear";
-            button2.UseVisualStyleBackColor = true;
             // 
             // Creacion
             // 
@@ -283,7 +263,7 @@
         private TabPage Pelicula;
         private TabPage Sesion;
         private Label label1;
-        private ComboBox cbClasificacion;
+        private ComboBox cbClasificacionPelicula;
         private Label label2;
         private TextBox txtNombrePelicula;
         private Label label4;
@@ -296,9 +276,7 @@
         private DateTimePicker dtFechaInicio;
         private DateTimePicker dateTimePicker1;
         private Button button2;
-        private ComboBox comboBox2;
+        private ComboBox cbNombrePelicula;
         private Label label8;
-        private ComboBox comboBox1;
-        private Label label7;
     }
 }
