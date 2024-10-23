@@ -6,5 +6,12 @@ namespace ProyectoBases
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Creacion FormularioCreacion = new Creacion();
+            FormularioCreacion.Show();  
+            this.Hide();
+        }
     }
 }

@@ -85,6 +85,7 @@
             button1.TabIndex = 5;
             button1.Text = "Continuar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // Form1
             // 
