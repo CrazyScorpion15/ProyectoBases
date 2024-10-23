@@ -30,7 +30,7 @@
         {
             OpcionesCreacion = new TabControl();
             Pelicula = new TabPage();
-            dateTimePicker1 = new DateTimePicker();
+            dtDuracionPelicula = new DateTimePicker();
             txtDescripcionPelicula = new TextBox();
             button1 = new Button();
             label4 = new Label();
@@ -64,7 +64,7 @@
             // 
             // Pelicula
             // 
-            Pelicula.Controls.Add(dateTimePicker1);
+            Pelicula.Controls.Add(dtDuracionPelicula);
             Pelicula.Controls.Add(txtDescripcionPelicula);
             Pelicula.Controls.Add(button1);
             Pelicula.Controls.Add(label4);
@@ -81,16 +81,16 @@
             Pelicula.Text = "Pelicula";
             Pelicula.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dtDuracionPelicula
             // 
-            dateTimePicker1.CustomFormat = "HH:mm";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(81, 107);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.ShowUpDown = true;
-            dateTimePicker1.Size = new Size(69, 27);
-            dateTimePicker1.TabIndex = 10;
-            dateTimePicker1.Value = new DateTime(2024, 10, 18, 11, 26, 43, 0);
+            dtDuracionPelicula.CustomFormat = "HH:mm:ss";
+            dtDuracionPelicula.Format = DateTimePickerFormat.Custom;
+            dtDuracionPelicula.Location = new Point(81, 107);
+            dtDuracionPelicula.Name = "dtDuracionPelicula";
+            dtDuracionPelicula.ShowUpDown = true;
+            dtDuracionPelicula.Size = new Size(87, 27);
+            dtDuracionPelicula.TabIndex = 10;
+            dtDuracionPelicula.Value = new DateTime(2024, 10, 18, 11, 26, 43, 0);
             // 
             // txtDescripcionPelicula
             // 
@@ -102,7 +102,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(115, 358);
+            button1.Location = new Point(130, 358);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 8;
@@ -181,7 +181,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(118, 358);
+            button2.Location = new Point(128, 358);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 8;
@@ -274,7 +274,7 @@
         private Label label5;
         private Label label6;
         private DateTimePicker dtFechaInicio;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtDuracionPelicula;
         private Button button2;
         private ComboBox cbNombrePelicula;
         private Label label8;
