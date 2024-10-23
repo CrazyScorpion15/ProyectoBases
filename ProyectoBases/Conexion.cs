@@ -17,7 +17,7 @@ namespace ProyectoBases
         public Conexion() { }
 
         // Método para ejecutar un SP que no devuelve datos
-        public void EjecutarSP(string nombreSP, Dictionary<string, object> parametros)
+        public bool EjecutarSP(string nombreSP, Dictionary<string, object> parametros)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -34,17 +34,20 @@ namespace ProyectoBases
                         }
                         
                         command.ExecuteNonQuery();
+                        return true;
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error al ejecutar el SP", ex);
+                    // Si se lanza un error desde el SP (RAISEERROR o THROW), se captura aquí
+                    MessageBox.Show($"Error: {ex.Message}");
+                    return false;
                 }
             }
         }
 
         // Método para ejecutar un SP que devuelve datos
-        public DataTable EjecutarSPConResultado(string nombreSP, Dictionary<string, object> parametros)
+        public DataTable? EjecutarSPConResultado(string nombreSP, Dictionary<string, object> parametros)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -70,7 +73,9 @@ namespace ProyectoBases
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error al ejecutar el SP", ex);
+                    // Si se lanza un error desde el SP (RAISEERROR o THROW), se captura aquí
+                    MessageBox.Show($"Error: {ex.Message}");
+                    return null;
                 }
             }
 

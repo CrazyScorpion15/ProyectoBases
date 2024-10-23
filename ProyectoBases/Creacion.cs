@@ -11,15 +11,13 @@ using System.Windows.Forms;
 namespace ProyectoBases
 {
     public partial class Creacion : Form
-    {        
+    {
+        Conexion conexion = new Conexion();
+
+        Dictionary<string, object> parametros = new Dictionary<string, object>();
         public Creacion()
         {
-            InitializeComponent();
-
-            //llamar sp para obtener los datos necesarios de las peliculas y salas
-            Conexion conexion = new Conexion();
-
-            Dictionary<string, object> parametros = new Dictionary<string, object>();
+            InitializeComponent();                        
 
             parametros.Add("@BANDERA", "DATOSPELICULA");
 
@@ -57,8 +55,50 @@ namespace ProyectoBases
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {                        
+            TimeSpan DuracionPelicula = dtDuracionPelicula.Value.TimeOfDay;
+            TimeSpan TiempoMinimo = TimeSpan.FromMinutes(1);
+            TimeSpan TiempoMaximo = TimeSpan.FromHours(5);
 
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtNombrePelicula.Text) || string.IsNullOrWhiteSpace(txtDescripcionPelicula.Text))
+                {
+                    MessageBox.Show("Error: Se necesita llenar toda la informacion");
+                    return;
+                }
+                if (!(DuracionPelicula > TiempoMinimo && DuracionPelicula < TiempoMaximo))
+                {
+                    MessageBox.Show("Error: La duración de la película debe ser mayor a 1 minuto y menor a 5 horas");
+                    return;
+                }
+
+                parametros.Clear();
+
+                string NombrePelicula = txtNombrePelicula.Text;
+                string ClasifiacionPelicula = cbClasificacionPelicula.Text;
+                string Duracion = dtDuracionPelicula.Text;
+                string Descripcion = txtDescripcionPelicula.Text;
+
+                parametros.Add("@NOMBRE", NombrePelicula);
+                parametros.Add("@NOMBRECLASIFICACION", ClasifiacionPelicula);
+                parametros.Add("@DURACION", Duracion);
+                parametros.Add("@DESCRIPCION", Descripcion);
+                
+                bool sp = conexion.EjecutarSP("SP_CREACIONPELICULA",parametros);
+
+                if (sp)
+                {
+                    MessageBox.Show("Se creo correctamente la pelicula");
+                    txtNombrePelicula.Text = "";
+                    txtDescripcionPelicula.Text = "";
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error en la accion del boton");
+            }
         }
     }
 }
