@@ -17,7 +17,7 @@ namespace ProyectoBases
         Dictionary<string, object> parametros = new Dictionary<string, object>();
         public Creacion()
         {
-            InitializeComponent();                        
+            InitializeComponent();
 
             parametros.Add("@BANDERA", "DATOSPELICULA");
 
@@ -32,7 +32,7 @@ namespace ProyectoBases
             {
                 cbNombrePelicula.Items.Add(item["Nombre"].ToString());
 
-                
+
                 string clasificacion = item["TipoClasificacion"].ToString();
                 if (!cbClasificacionPelicula.Items.Contains(clasificacion))
                 {
@@ -55,7 +55,7 @@ namespace ProyectoBases
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {                        
+        {
             TimeSpan DuracionPelicula = dtDuracionPelicula.Value.TimeOfDay;
             TimeSpan TiempoMinimo = TimeSpan.FromMinutes(1);
             TimeSpan TiempoMaximo = TimeSpan.FromHours(5);
@@ -84,8 +84,8 @@ namespace ProyectoBases
                 parametros.Add("@NOMBRECLASIFICACION", ClasifiacionPelicula);
                 parametros.Add("@DURACION", Duracion);
                 parametros.Add("@DESCRIPCION", Descripcion);
-                
-                bool sp = conexion.EjecutarSP("SP_CREACIONPELICULA",parametros);
+
+                bool sp = conexion.EjecutarSP("SP_CREACIONPELICULA", parametros);
 
                 if (sp)
                 {
@@ -94,6 +94,41 @@ namespace ProyectoBases
                     txtDescripcionPelicula.Text = "";
                     return;
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error en la accion del boton");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {                
+                DateTime fechaSeleccionada = dtFechaInicio.Value;
+
+                if (fechaSeleccionada < DateTime.Now)
+                {
+                    MessageBox.Show("La fecha seleccionada no puede ser anterior al día de hoy.");
+                    return;
+                }
+
+                parametros.Clear();
+
+                string NombrePelicula = cbNombrePelicula.Text;
+                string NombreSala = cbSala.Text;
+
+                parametros.Add("@FECHAINICIO", fechaSeleccionada);
+                parametros.Add("@NOMBRESALA", NombreSala);
+                parametros.Add("@NOMBREPELICULA", NombrePelicula);
+
+                bool sp = conexion.EjecutarSP("SP_CREARSESION", parametros);
+
+                if (sp) {
+                    MessageBox.Show("Se creo correctamente la sesion");                    
+                    return;
+                }
+
             }
             catch (Exception)
             {

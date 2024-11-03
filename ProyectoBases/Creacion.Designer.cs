@@ -59,7 +59,7 @@
             OpcionesCreacion.Location = new Point(12, 12);
             OpcionesCreacion.Name = "OpcionesCreacion";
             OpcionesCreacion.SelectedIndex = 0;
-            OpcionesCreacion.Size = new Size(345, 426);
+            OpcionesCreacion.Size = new Size(349, 426);
             OpcionesCreacion.TabIndex = 0;
             // 
             // Pelicula
@@ -76,7 +76,7 @@
             Pelicula.Location = new Point(4, 29);
             Pelicula.Name = "Pelicula";
             Pelicula.Padding = new Padding(3);
-            Pelicula.Size = new Size(337, 393);
+            Pelicula.Size = new Size(341, 393);
             Pelicula.TabIndex = 0;
             Pelicula.Text = "Pelicula";
             Pelicula.UseVisualStyleBackColor = true;
@@ -174,7 +174,7 @@
             Sesion.Location = new Point(4, 29);
             Sesion.Name = "Sesion";
             Sesion.Padding = new Padding(3);
-            Sesion.Size = new Size(337, 393);
+            Sesion.Size = new Size(341, 393);
             Sesion.TabIndex = 1;
             Sesion.Text = "Sesion";
             Sesion.UseVisualStyleBackColor = true;
@@ -187,6 +187,7 @@
             button2.TabIndex = 8;
             button2.Text = "Crear";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // cbNombrePelicula
             // 
@@ -216,11 +217,11 @@
             // 
             // dtFechaInicio
             // 
-            dtFechaInicio.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtFechaInicio.CustomFormat = "yyyy/MM/dd HH:mm:ss";
             dtFechaInicio.Format = DateTimePickerFormat.Custom;
             dtFechaInicio.Location = new Point(147, 14);
             dtFechaInicio.Name = "dtFechaInicio";
-            dtFechaInicio.Size = new Size(164, 27);
+            dtFechaInicio.Size = new Size(181, 27);
             dtFechaInicio.TabIndex = 2;
             dtFechaInicio.Value = new DateTime(2024, 10, 18, 11, 26, 43, 0);
             // 
@@ -245,7 +246,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(373, 450);
+            ClientSize = new Size(378, 450);
             Controls.Add(OpcionesCreacion);
             Name = "Creacion";
             Text = "Creacion";
