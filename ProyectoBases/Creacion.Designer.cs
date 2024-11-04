@@ -47,6 +47,8 @@
             dtFechaInicio = new DateTimePicker();
             cbSala = new ComboBox();
             label5 = new Label();
+            button3 = new Button();
+            openFileDialog1 = new OpenFileDialog();
             OpcionesCreacion.SuspendLayout();
             Pelicula.SuspendLayout();
             Sesion.SuspendLayout();
@@ -164,6 +166,7 @@
             // 
             // Sesion
             // 
+            Sesion.Controls.Add(button3);
             Sesion.Controls.Add(button2);
             Sesion.Controls.Add(cbNombrePelicula);
             Sesion.Controls.Add(label8);
@@ -242,6 +245,20 @@
             label5.TabIndex = 0;
             label5.Text = "Sala";
             // 
+            // button3
+            // 
+            button3.Location = new Point(128, 158);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 9;
+            button3.Text = "Cargar CSV";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Creacion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -279,5 +296,7 @@
         private Button button2;
         private ComboBox cbNombrePelicula;
         private Label label8;
+        private Button button3;
+        private OpenFileDialog openFileDialog1;
     }
 }

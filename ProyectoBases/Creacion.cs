@@ -1,8 +1,12 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Formats.Asn1;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,7 +108,7 @@ namespace ProyectoBases
         private void button2_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 DateTime fechaSeleccionada = dtFechaInicio.Value;
 
                 if (fechaSeleccionada < DateTime.Now)
@@ -124,9 +128,14 @@ namespace ProyectoBases
 
                 bool sp = conexion.EjecutarSP("SP_CREARSESION", parametros);
 
-                if (sp) {
-                    MessageBox.Show("Se creo correctamente la sesion");                    
+                if (!sp)
+                {
+                    MessageBox.Show("Se creo correctamente la sesion");
                     return;
+                }
+                else
+                {
+                    MessageBox.Show("Se creo correctamente la sesion");                    
                 }
 
             }
@@ -134,6 +143,72 @@ namespace ProyectoBases
             {
                 MessageBox.Show("Error en la accion del boton");
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            openFileDialog.Title = "Seleccione un archivo CSV";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string rutaCSV = openFileDialog.FileName;
+
+                if (LeerYRegistrarCSV(rutaCSV))
+                {
+                    MessageBox.Show("Archivo procesado y registrado en la base de datos.");
+                }
+                else
+                {
+                    MessageBox.Show("Error: Archivo no procesado en la base de datos.");
+                }
+            }
+        }
+
+        private bool LeerYRegistrarCSV(string rutaCSV)
+        {
+            try
+            {
+                using (var reader = new StreamReader(rutaCSV))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    // Leer la primera fila como encabezado
+                    if (csv.Read())
+                    {
+                        csv.ReadHeader();
+                    }
+                    while (csv.Read())
+                    {
+                        // Lee cada columna del CSV y asúmelo a tus campos de base de datos
+                        var columna1 = csv.GetField<string>("FechaHoraInicio");
+                        var columna2 = csv.GetField<string>("Sala");
+                        var columna3 = csv.GetField<string>("Pelicula");
+
+                        parametros.Clear();
+
+                        parametros.Add("@FECHAINICIODOC", columna1);
+                        parametros.Add("@IDSALADOC", columna2);
+                        parametros.Add("@IDPELICULADOC", columna3);
+
+                        bool sp = conexion.EjecutarSP("SP_CREARSESIONCSV", parametros);
+
+                        if (!sp)
+                        {
+                            MessageBox.Show("Se obtuvo un error en la inserción");
+                            return false;
+                        }                        
+                    }
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Se obtuvo un error al leer el archivo");
+                return false;
+            }
+
+
         }
     }
 }
